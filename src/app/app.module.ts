@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FlexLayoutModule} from "@angular/flex-layout";
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +26,8 @@ import {
   MatFormFieldModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { QuizComponent } from './quiz/quiz.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { QuizComponent } from './quiz/quiz.component';
     BoardsDetailComponent,
     BoardsCreateComponent,
     BoardsEditComponent,
-    QuizComponent
+    QuizComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

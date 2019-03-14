@@ -5,6 +5,8 @@ import {BoardsEditComponent} from './boards-edit/boards-edit.component';
 import {BoardsDetailComponent} from './boards-detail/boards-detail.component';
 import {BoardsCreateComponent} from './boards-create/boards-create.component';
 import {QuizComponent} from './quiz/quiz.component';
+import {LoginComponent} from './login/login.component';
+import {RegisterComponent} from './register/register.component';
 
 const routes: Routes = [
   {
@@ -27,11 +29,16 @@ const routes: Routes = [
     component: BoardsEditComponent,
     data: { title: 'Edit Boards' }
   },
-  /*{
-    path: 'quiz',
-    component: QuizComponent,
-    data: { title: 'Quiz' }
-  },*/
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: { title: 'Login' }
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    data: { title: 'Register' }
+  },
   { path: '',
     component: QuizComponent,
     data: { title: 'Tab Suspender Uninstall Survey' }

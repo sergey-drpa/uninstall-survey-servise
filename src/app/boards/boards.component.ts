@@ -36,7 +36,7 @@ export class BoardsComponent implements OnInit {
     const filterValue = value.toLowerCase();
 
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
-    //return this.fs.queryBoards(value);
+    // return this.fs.queryBoards(value);
   }
 
 }

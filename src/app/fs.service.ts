@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-//import { AngularFireDatabase } from '@angular/fire/database';
+// import { AngularFireDatabase } from '@angular/fire/database';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -29,7 +29,7 @@ export class FsService {
     firebase.initializeApp(config);
     firebase.firestore().settings(settings);
     this.ref = firebase.firestore().collection('boards');
-	  this.quiz = firebase.firestore().collection('quiz');
+    this.quiz = firebase.firestore().collection('quiz');
     this.quizStatistic = firebase.firestore().collection('quiz_statistic');
   }
 
@@ -59,14 +59,14 @@ export class FsService {
 
             return firebase.firestore().runTransaction(function(transaction) {
               // This code may get re-run multiple times if there are conflicts.
-              return transaction.get(doc.ref).then(function(doc) {
-                if (!doc.exists) {
+              return transaction.get(doc.ref).then(function(doc_) {
+                if (!doc_.exists) {
                   throw new Error('Question does not exist!');
                 }
 
                 // THIS IS WHERE TO DO THE INCREMENT
-                const new_score = doc.data().score + 1;
-                const answerMap = doc.data().answer;
+                const new_score = doc_.data().score + 1;
+                const answerMap = doc_.data().answer;
                 let answerCount;
                 if (answerMap[answer.label] != null) {
                   answerCount = answerMap[answer.label] + 1;
@@ -75,7 +75,7 @@ export class FsService {
                 }
                 answerMap[answer.label] = answerCount;
 
-                transaction.update(doc.ref, { score: new_score, answer: answerMap });
+                transaction.update(doc_.ref, { score: new_score, answer: answerMap });
               });
             }).then(function() {
               console.log('Transaction successfully committed!');
@@ -112,15 +112,15 @@ export class FsService {
 
           return firebase.firestore().runTransaction(function(transaction) {
             // This code may get re-run multiple times if there are conflicts.
-            return transaction.get(doc.ref).then(function(doc) {
-              if (!doc.exists) {
+            return transaction.get(doc.ref).then(function(doc_) {
+              if (!doc_.exists) {
                 throw new Error('Count does not exist!');
               }
 
               // THIS IS WHERE TO DO THE INCREMENT
-              const count = doc.data().count + 1;
+              const count = doc_.data().count + 1;
 
-              transaction.update(doc.ref, { count: count });
+              transaction.update(doc_.ref, { count: count });
             });
           }).then(function() {
             console.log('Transaction successfully committed!');
