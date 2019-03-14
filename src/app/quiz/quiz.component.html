@@ -1,0 +1,74 @@
+<div [ngStyle]="{'background-color': state.data.form.theme.colors.background, 'width': '100%', 'height': '100%'}">
+  <div class="flexbox-parent" style="height: 100%;">
+    <div fxLayout="row" fxLayoutAlign="center center" style="height: 100%;">
+      <div class="question-block {{state.normalClass}}" [ngClass]="state.animateClass" style="width: 700px;"><!--{'animate-hide': state.hidden} -->
+        <div [ngClass]="{'thankYouScreen': (state.currentQuestion.type == 'thankYouScreen')}"
+             style="-webkit-font-smoothing: antialiased;
+            font-weight: unset;
+            font-size: 24px;
+            line-height: 32px;
+            color: rgb(255, 255, 255);
+            font-family: Lato, sans-serif;
+            margin-bottom: 45px;">
+          {{state.currentQuestion.title}}
+
+          <div
+            class="answer close-btn"
+            onclick="window.close();"
+            [ngClass]="{'thankYouScreen': (state.currentQuestion.type == 'thankYouScreen')}">
+            <div class="sub-answer">
+              Close
+            </div>
+          </div>
+
+          <div style="margin-top: 7px;
+              font-size: 20px;
+              opacity: 0.75;
+              text-decoration: underline;">
+            {{state.currentQuestion.subTitle}}
+          </div>
+        </div>
+        <div *ngFor="let item of state.currentQuestion.answers" class="answer" (click)="selectAnswer(item, otherAnswer)">
+          <div class="sub-answer">
+            <svg class="SVGInline-svg" width="11" height="10" xmlns="http://www.w3.org/2000/svg"><g fillrule="nonzero"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></g></svg>
+            &nbsp;&nbsp;&nbsp;{{item.label}}
+            <div *ngIf="item.id === 'otherChoice'" style="display: none;" [ngClass]="{'other-enabled': (item.id === 'otherChoice')}">
+              <span></span>
+              <div class="input-wrap">
+                <input [(ngModel)]="otherAnswer"
+                       placeholder="Other reason..."
+                       onfocus="this.placeholder = ''; document.querySelector('.other-enabled .send-answer').classList.add('visible');"
+                       onblur="this.placeholder = 'Other reason...';"
+                       onclick="event.stopPropagation();"/>
+                <div id="send-answer" class="send-answer" title="Submit">
+                  <svg class="SVGInline-svg" width="11" height="10" xmlns="http://www.w3.org/2000/svg"><g fillrule="nonzero"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></g></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page-bar"
+             [ngClass]="{'thankYouScreen': (state.currentQuestion.type == 'thankYouScreen')}">
+          Page {{page}} of 2
+        </div>
+
+        <!--div class="thanks-bar" jsname="bLLMxc" role="heading">
+          <div class="sub-thanks-bar">
+            <div class="thanks-text">
+              Question 1 of ~ 2
+            </div>
+          </div>
+          <div class="thanks-triangle">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 10 10" preserveAspectRatio="none" class="thanks-triangle-svg">
+              <polygon class="thanks-triangle-svg-poly" points="0,0 10,0 0,10"></polygon>
+            </svg>
+          </div>
+        </div-->
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
